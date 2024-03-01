@@ -1,0 +1,243 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > ProductController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.dbms.triplehao.web</a>
+</div>
+
+<h1>Coverage Summary for Class: ProductController (com.dbms.triplehao.web)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ProductController</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/13)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/63)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.dbms.triplehao.web;
+&nbsp;
+&nbsp;import com.alibaba.fastjson.JSON;
+&nbsp;import com.dbms.triplehao.entity.Product;
+&nbsp;import com.dbms.triplehao.service.ProductService;
+&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+&nbsp;import org.springframework.web.bind.annotation.CrossOrigin;
+&nbsp;import org.springframework.web.bind.annotation.RequestMapping;
+&nbsp;import org.springframework.web.bind.annotation.RequestMethod;
+&nbsp;import org.springframework.web.bind.annotation.RestController;
+&nbsp;
+&nbsp;import javax.servlet.http.HttpServletRequest;
+&nbsp;import java.util.HashMap;
+&nbsp;import java.util.List;
+&nbsp;import java.util.Map;
+&nbsp;@CrossOrigin(origins = &quot;*&quot;, maxAge = 3600)       //?????????
+&nbsp;@RestController
+&nbsp;@RequestMapping(&quot;/superadmin&quot;)
+<b class="nc">&nbsp;public class ProductController</b>
+&nbsp;{
+&nbsp;    @Autowired
+&nbsp;    private ProductService productService;
+&nbsp;
+&nbsp;    @RequestMapping(value = &quot;/listproduct&quot;, method = RequestMethod.GET)
+&nbsp;    private String listProduct()
+&nbsp;    {
+<b class="nc">&nbsp;        Map&lt;String, Object&gt; modelMap = new HashMap&lt;String, Object&gt;();</b>
+<b class="nc">&nbsp;        List&lt;Product&gt; list = productService.getProductList();</b>
+<b class="nc">&nbsp;        modelMap.put(&quot;productList&quot;, list);</b>
+<b class="nc">&nbsp;        String json= JSON.toJSON(modelMap).toString();</b>
+<b class="nc">&nbsp;        return json;</b>
+&nbsp;//        return modelMap;
+&nbsp;    }
+&nbsp;
+&nbsp;    @RequestMapping(value = &quot;/getproductbyid&quot;, method  = RequestMethod.GET)
+&nbsp;    private String getProductById(HttpServletRequest request)
+&nbsp;    {
+<b class="nc">&nbsp;        Map&lt;String, Object&gt; modelMap = new HashMap&lt;String, Object&gt;();</b>
+<b class="nc">&nbsp;        int ProductId = Integer.parseInt(request.getParameter(&quot;ProductId&quot;));</b>
+<b class="nc">&nbsp;        List&lt;Product&gt; list = productService.getProductById(ProductId);</b>
+<b class="nc">&nbsp;        modelMap.put(&quot;product&quot;,list);</b>
+<b class="nc">&nbsp;        String json=JSON.toJSON(modelMap).toString();</b>
+<b class="nc">&nbsp;        return json;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @RequestMapping(value = &quot;/getproductbyname&quot;, method  = RequestMethod.GET)
+&nbsp;    private String getProductByName(HttpServletRequest request)
+&nbsp;    {
+<b class="nc">&nbsp;        Map&lt;String, Object&gt; modelMap = new HashMap&lt;String, Object&gt;();</b>
+&nbsp;////        String ProductName = String.parseInt(request.getParameter(&quot;name&quot;));
+&nbsp;//        String ProductName = request.getParameter(&quot;name&quot;);
+<b class="nc">&nbsp;        String ProductName = &quot;TCL&quot;;</b>
+<b class="nc">&nbsp;        List&lt;Product&gt; list = productService.getProductByName(ProductName);</b>
+<b class="nc">&nbsp;        modelMap.put(&quot;product&quot;,list);</b>
+<b class="nc">&nbsp;        String json=JSON.toJSON(modelMap).toString();</b>
+<b class="nc">&nbsp;        return json;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @RequestMapping(value = &quot;/sortproductbyprice&quot;, method = RequestMethod.GET)
+&nbsp;    private String sortProductByPrice() {
+<b class="nc">&nbsp;        Map&lt;String, Object&gt; modelMap = new HashMap&lt;&gt;();</b>
+<b class="nc">&nbsp;        List&lt;Product&gt; list = productService.sortByProduct();</b>
+<b class="nc">&nbsp;        modelMap.put(&quot;productListByPrice&quot;, list);</b>
+<b class="nc">&nbsp;        String json = JSON.toJSON(modelMap).toString();</b>
+<b class="nc">&nbsp;        return json;</b>
+&nbsp;    }
+&nbsp;    @RequestMapping(value = &quot;/sortproductbypricedesc&quot;, method = RequestMethod.GET)
+&nbsp;    private String sortProductByPriceDesc() {
+<b class="nc">&nbsp;        Map&lt;String, Object&gt; modelMap = new HashMap&lt;&gt;();</b>
+<b class="nc">&nbsp;        List&lt;Product&gt; list = productService.sortByProductDesc();</b>
+<b class="nc">&nbsp;        modelMap.put(&quot;productListByPriceDesc&quot;, list);</b>
+<b class="nc">&nbsp;        String json = JSON.toJSON(modelMap).toString();</b>
+<b class="nc">&nbsp;        return json;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @RequestMapping(value = &quot;/searchforcamera&quot;, method = RequestMethod.GET)
+&nbsp;    private String searchForCamera() {
+<b class="nc">&nbsp;        Map&lt;String, Object&gt; modelMap = new HashMap&lt;&gt;();</b>
+<b class="nc">&nbsp;        List&lt;Product&gt; list = productService.searchForCamera();</b>
+<b class="nc">&nbsp;        modelMap.put(&quot;searchforcamera&quot;, list);</b>
+<b class="nc">&nbsp;        String json = JSON.toJSON(modelMap).toString();</b>
+<b class="nc">&nbsp;        return json;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @RequestMapping(value = &quot;/searchforheadphone&quot;, method = RequestMethod.GET)
+&nbsp;    private String searchForHeadphone() {
+<b class="nc">&nbsp;        Map&lt;String, Object&gt; modelMap = new HashMap&lt;&gt;();</b>
+<b class="nc">&nbsp;        List&lt;Product&gt; list = productService.searchForHeadphone();</b>
+<b class="nc">&nbsp;        modelMap.put(&quot;searchforheadphone&quot;, list);</b>
+<b class="nc">&nbsp;        String json = JSON.toJSON(modelMap).toString();</b>
+<b class="nc">&nbsp;        return json;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @RequestMapping(value = &quot;/searchforacc&quot;, method = RequestMethod.GET)
+&nbsp;    private String searchForAcc() {
+<b class="nc">&nbsp;        Map&lt;String, Object&gt; modelMap = new HashMap&lt;&gt;();</b>
+<b class="nc">&nbsp;        List&lt;Product&gt; list = productService.searchForAcc();</b>
+<b class="nc">&nbsp;        modelMap.put(&quot;searchforacc&quot;, list);</b>
+<b class="nc">&nbsp;        String json = JSON.toJSON(modelMap).toString();</b>
+<b class="nc">&nbsp;        return json;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @RequestMapping(value = &quot;/searchforcell&quot;, method = RequestMethod.GET)
+&nbsp;    private String searchForCellphone() {
+<b class="nc">&nbsp;        Map&lt;String, Object&gt; modelMap = new HashMap&lt;&gt;();</b>
+<b class="nc">&nbsp;        List&lt;Product&gt; list = productService.searchForCellphone();</b>
+<b class="nc">&nbsp;        modelMap.put(&quot;searchforcell&quot;, list);</b>
+<b class="nc">&nbsp;        String json = JSON.toJSON(modelMap).toString();</b>
+<b class="nc">&nbsp;        return json;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @RequestMapping(value = &quot;/searchforlaptop&quot;, method = RequestMethod.GET)
+&nbsp;    private String searchForLaptop() {
+<b class="nc">&nbsp;        Map&lt;String, Object&gt; modelMap = new HashMap&lt;&gt;();</b>
+<b class="nc">&nbsp;        List&lt;Product&gt; list = productService.searchForLaptop();</b>
+<b class="nc">&nbsp;        modelMap.put(&quot;searchforlaptop&quot;, list);</b>
+<b class="nc">&nbsp;        String json = JSON.toJSON(modelMap).toString();</b>
+<b class="nc">&nbsp;        return json;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @RequestMapping(value = &quot;/searchfortele&quot;, method = RequestMethod.GET)
+&nbsp;    private String searchForTele() {
+<b class="nc">&nbsp;        Map&lt;String, Object&gt; modelMap = new HashMap&lt;&gt;();</b>
+<b class="nc">&nbsp;        List&lt;Product&gt; list = productService.searchForTele();</b>
+<b class="nc">&nbsp;        modelMap.put(&quot;searchfortele&quot;, list);</b>
+<b class="nc">&nbsp;        String json = JSON.toJSON(modelMap).toString();</b>
+<b class="nc">&nbsp;        return json;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @RequestMapping(value = &quot;/searchfortablet&quot;, method = RequestMethod.GET)
+&nbsp;    private String searchForTablet() {
+<b class="nc">&nbsp;        Map&lt;String, Object&gt; modelMap = new HashMap&lt;&gt;();</b>
+<b class="nc">&nbsp;        List&lt;Product&gt; list = productService.searchForTablet();</b>
+<b class="nc">&nbsp;        modelMap.put(&quot;searchfortablet&quot;, list);</b>
+<b class="nc">&nbsp;        String json = JSON.toJSON(modelMap).toString();</b>
+<b class="nc">&nbsp;        return json;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-02-27 11:52</div>
+</div>
+</body>
+</html>

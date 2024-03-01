@@ -1,0 +1,109 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > ProductDao</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.dbms.triplehao.dao</a>
+</div>
+
+<h1>Coverage Summary for Class: ProductDao (com.dbms.triplehao.dao)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">ProductDao</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.dbms.triplehao.dao;
+&nbsp;
+&nbsp;import com.dbms.triplehao.entity.Product;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;public interface ProductDao {
+&nbsp;
+&nbsp;    List&lt;Product&gt; queryProduct();
+&nbsp;
+&nbsp;    List&lt;Product&gt; queryProductById(int productId);
+&nbsp;
+&nbsp;    List&lt;Product&gt; queryProductByName(String name);
+&nbsp;
+&nbsp;    int insertProduct(Product product);
+&nbsp;
+&nbsp;    int updatedProduct(Product product);
+&nbsp;
+&nbsp;    int deleteProduct(int productId);
+&nbsp;
+&nbsp;    int queryCountProduct();
+&nbsp;
+&nbsp;    List&lt;Product&gt; querySortByPrice();
+&nbsp;
+&nbsp;    List&lt;Product&gt; querySortByPriceDesc();
+&nbsp;
+&nbsp;    List&lt;Product&gt; queryForCamera();
+&nbsp;
+&nbsp;    List&lt;Product&gt; queryForHeadphone();
+&nbsp;
+&nbsp;    List&lt;Product&gt; queryForAccessories();
+&nbsp;
+&nbsp;    List&lt;Product&gt; queryForCellphone();
+&nbsp;
+&nbsp;    List&lt;Product&gt; queryForLaptop();
+&nbsp;
+&nbsp;    List&lt;Product&gt; queryForTele();
+&nbsp;
+&nbsp;    List&lt;Product&gt; queryForTablet();
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-02-27 11:52</div>
+</div>
+</body>
+</html>

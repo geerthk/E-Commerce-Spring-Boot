@@ -1,0 +1,210 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > CustomerAccountController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.dbms.triplehao.web</a>
+</div>
+
+<h1>Coverage Summary for Class: CustomerAccountController (com.dbms.triplehao.web)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">CustomerAccountController</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/16)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/42)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.dbms.triplehao.web;
+&nbsp;
+&nbsp;import com.alibaba.fastjson.JSON;
+&nbsp;import com.dbms.triplehao.entity.CustomerAccount;
+&nbsp;import com.dbms.triplehao.service.CustomerAccountService;
+&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+&nbsp;import org.springframework.web.bind.annotation.CrossOrigin;
+&nbsp;import org.springframework.web.bind.annotation.RequestMapping;
+&nbsp;import org.springframework.web.bind.annotation.RequestMethod;
+&nbsp;import org.springframework.web.bind.annotation.RestController;
+&nbsp;
+&nbsp;import javax.servlet.http.HttpServletRequest;
+&nbsp;import java.util.LinkedHashMap;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;@CrossOrigin(origins = &quot;*&quot;, maxAge = 3600)       //?????????
+&nbsp;@RestController
+&nbsp;@RequestMapping(&quot;/superadmin&quot;)
+<b class="nc">&nbsp;public class CustomerAccountController</b>
+&nbsp;{
+&nbsp;    @Autowired
+&nbsp;    CustomerAccountService customerAccountService;
+&nbsp;
+&nbsp;    @RequestMapping(value = &quot;/register&quot;, method = RequestMethod.POST)
+&nbsp;    public String register(HttpServletRequest request)
+&nbsp;    {
+<b class="nc">&nbsp;        String username = request.getParameter(&quot;username&quot;);</b>
+<b class="nc">&nbsp;        String password = request.getParameter(&quot;pwd&quot;);</b>
+<b class="nc">&nbsp;        String role = request.getParameter(&quot;role&quot;);</b>
+<b class="nc">&nbsp;        LinkedHashMap&lt;String, Object&gt; result=new LinkedHashMap&lt;&gt;();</b>
+&nbsp;
+<b class="nc">&nbsp;        if (role==&quot;username&quot;||role.equals(&quot;username&quot;))</b>
+&nbsp;        {
+<b class="nc">&nbsp;            CustomerAccount customerAccount = new CustomerAccount();</b>
+<b class="nc">&nbsp;            customerAccount.setUsername(username);</b>
+<b class="nc">&nbsp;            customerAccount.setPassword(password);</b>
+<b class="nc">&nbsp;            boolean user=customerAccountService.addCustomerAccount(customerAccount);</b>
+<b class="nc">&nbsp;            if (user)</b>
+&nbsp;            {
+<b class="nc">&nbsp;                result.put(&quot;data&quot;,&quot;success&quot;);</b>
+<b class="nc">&nbsp;                result.put(&quot;msg&quot;,&quot;register success&quot;);</b>
+<b class="nc">&nbsp;                result.put(&quot;code&quot;,&quot;200&quot;);</b>
+&nbsp;            }
+<b class="nc">&nbsp;        }</b>
+&nbsp;        else
+&nbsp;        {
+<b class="nc">&nbsp;            result.put(&quot;code&quot;,&quot;202&quot;);</b>
+&nbsp;        }
+<b class="nc">&nbsp;        String json=JSON.toJSON(result).toString();</b>
+<b class="nc">&nbsp;        return json;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @RequestMapping(value = &quot;/login&quot;, method = RequestMethod.POST)
+&nbsp;    public String login(HttpServletRequest request)
+&nbsp;    {
+<b class="nc">&nbsp;        LinkedHashMap&lt;String, Object&gt; result = new LinkedHashMap&lt;&gt;();</b>
+<b class="nc">&nbsp;        String password=request.getParameter(&quot;pwd&quot;);</b>
+<b class="nc">&nbsp;        String username=request.getParameter(&quot;username&quot;);</b>
+<b class="nc">&nbsp;        String role=request.getParameter(&quot;role&quot;);</b>
+<b class="nc">&nbsp;        if (role==&quot;username&quot;||role.equals(&quot;username&quot;))</b>
+&nbsp;        {
+<b class="nc">&nbsp;            CustomerAccount customerAccount = new CustomerAccount();</b>
+<b class="nc">&nbsp;            List&lt;CustomerAccount&gt; list= customerAccountService.searchCustomerAccount(username);</b>
+<b class="nc">&nbsp;            if (list==null||list.size()==0)</b>
+&nbsp;            {
+<b class="nc">&nbsp;                result.put(&quot;info&quot;, &quot;user not exist&quot;);</b>
+<b class="nc">&nbsp;                result.put(&quot;code&quot;,&quot;201&quot;);</b>
+<b class="nc">&nbsp;                result.put(&quot;data&quot;,&quot;success&quot;);</b>
+&nbsp;            }
+&nbsp;            else{
+<b class="nc">&nbsp;                if (list.get(0).getPassword().equals(password))</b>
+&nbsp;                {
+<b class="nc">&nbsp;                    result.put(&quot;info&quot;,&quot;login success&quot;);</b>
+<b class="nc">&nbsp;                    result.put(&quot;code&quot;,&quot;200&quot;);</b>
+<b class="nc">&nbsp;                    result.put(&quot;data&quot;,&quot;success&quot;);</b>
+&nbsp;                }
+&nbsp;                else
+&nbsp;                {
+<b class="nc">&nbsp;                    result.put(&quot;info&quot;, &quot;pwd error&quot;);</b>
+<b class="nc">&nbsp;                    result.put(&quot;code&quot;, &quot;202&quot;);</b>
+<b class="nc">&nbsp;                    result.put(&quot;data&quot;, &quot;success&quot;);</b>
+&nbsp;                }
+&nbsp;            }
+<b class="nc">&nbsp;        }</b>
+&nbsp;        else
+&nbsp;        {
+<b class="nc">&nbsp;            result.put(&quot;info&quot;, &quot;pwd error&quot;);</b>
+<b class="nc">&nbsp;            result.put(&quot;code&quot;, &quot;202&quot;);</b>
+<b class="nc">&nbsp;            result.put(&quot;data&quot;, &quot;success&quot;);</b>
+&nbsp;        }
+<b class="nc">&nbsp;        String json=JSON.toJSON(result).toString();</b>
+<b class="nc">&nbsp;        return json;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-02-27 11:52</div>
+</div>
+</body>
+</html>

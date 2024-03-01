@@ -20,4 +20,8 @@
         SELECT COUNT(*)
         FROM customer_account;
     </select>
+    <delete id="deleteCustomerAccountByUsername">
+        DELETE FROM customer_account
+        WHERE username=#{username}
+    </delete>
 </mapper>

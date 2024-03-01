@@ -1,0 +1,173 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > CustomerAccountServiceImpl</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.dbms.triplehao.service.impl</a>
+</div>
+
+<h1>Coverage Summary for Class: CustomerAccountServiceImpl (com.dbms.triplehao.service.impl)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">CustomerAccountServiceImpl</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/11)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.dbms.triplehao.service.impl;
+&nbsp;
+&nbsp;import com.dbms.triplehao.dao.CustomerAccountDao;
+&nbsp;import com.dbms.triplehao.entity.CustomerAccount;
+&nbsp;import com.dbms.triplehao.service.CustomerAccountService;
+&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+&nbsp;import org.springframework.stereotype.Service;
+&nbsp;import org.springframework.transaction.annotation.Transactional;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;@Service
+<b class="nc">&nbsp;public class CustomerAccountServiceImpl implements CustomerAccountService</b>
+&nbsp;{
+&nbsp;    @Autowired
+&nbsp;    CustomerAccountDao customerAccountDao;
+&nbsp;
+&nbsp;    @Transactional
+&nbsp;    @Override
+&nbsp;    public boolean addCustomerAccount(CustomerAccount customerAccount)
+&nbsp;    {
+<b class="nc">&nbsp;        if (customerAccount.getUsername() != null &amp;&amp; !&quot;&quot;.equals(customerAccount.getUsername()) &amp;&amp; customerAccount.getPassword() != null &amp;&amp; !&quot;&quot;.equals(customerAccount.getPassword()))</b>
+&nbsp;        {
+&nbsp;            try {
+<b class="nc">&nbsp;                int effectedNum = customerAccountDao.insertCustomerAccount(customerAccount);</b>
+<b class="nc">&nbsp;                if (effectedNum&gt;0)</b>
+&nbsp;                {
+<b class="nc">&nbsp;                    return true;</b>
+&nbsp;                }
+&nbsp;                else
+&nbsp;                {
+<b class="nc">&nbsp;                    throw new RuntimeException(&quot;Insert failed!&quot;);</b>
+&nbsp;                }
+&nbsp;            }
+<b class="nc">&nbsp;            catch (Exception e)</b>
+&nbsp;            {
+<b class="nc">&nbsp;                throw new RuntimeException(&quot;Insert failed:&quot; + e.getMessage());</b>
+&nbsp;            }
+&nbsp;
+&nbsp;        }
+&nbsp;        else
+&nbsp;        {
+<b class="nc">&nbsp;            throw new RuntimeException(&quot;Insert data can not be null!!&quot;);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public List&lt;CustomerAccount&gt; searchCustomerAccount(String username)
+&nbsp;    {
+<b class="nc">&nbsp;        return customerAccountDao.searchCustomerAccount(username);</b>
+&nbsp;    }
+&nbsp;    @Override
+&nbsp;    public int countCustomer() {
+<b class="nc">&nbsp;        return customerAccountDao.queryCountCustomer();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-02-27 11:52</div>
+</div>
+</body>
+</html>

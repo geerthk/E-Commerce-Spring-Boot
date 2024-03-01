@@ -35,11 +35,21 @@
             <!--<if test="category!=null">category=#{category}</if>-->
         </set>
         WHERE username=#{username}
+
     </update>
     <delete id="deleteSalesAccount" >
         DELETE FROM
         salesperson_account
         WHERE
         username=#{username}
+    </delete>
+    <select id="querySalesAccountByUsername" resultType="com.dbms.triplehao.entity.SalesAccount">
+        SELECT *
+        FROM salesperson_account
+        WHERE username=#{username}
+    </select>
+    <delete id="deleteSalesAccountByUsername">
+        DELETE FROM salesperson_account
+        WHERE username=#{username}
     </delete>
 </mapper>

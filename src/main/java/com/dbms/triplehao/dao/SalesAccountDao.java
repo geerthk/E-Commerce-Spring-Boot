@@ -13,6 +13,10 @@ public interface SalesAccountDao {
     //register
     int insertSalesAccount(SalesAccount salesAccount);
 
+    int deleteSalesAccountByUsername(String username);
+
+    List<SalesAccount> querySalesAccountByUsername(String username);
+
 //    int updatedSalesAccount(SalesAccount salesAccount);
 //
 //    int deleteSalesAccount(int empId);

@@ -10,4 +10,5 @@ public interface CustomerAccountDao
     List<CustomerAccount> searchCustomerAccount(String username);
     int queryCountCustomer();
 
+    int deleteCustomerAccountByUsername(String username);
 }

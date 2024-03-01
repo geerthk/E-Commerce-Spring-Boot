@@ -1,0 +1,147 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > SessionFactoryConfiguration</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.dbms.triplehao.config.dao</a>
+</div>
+
+<h1>Coverage Summary for Class: SessionFactoryConfiguration (com.dbms.triplehao.config.dao)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">SessionFactoryConfiguration</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/9)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.dbms.triplehao.config.dao;
+&nbsp;
+&nbsp;import org.mybatis.spring.SqlSessionFactoryBean;
+&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+&nbsp;import org.springframework.beans.factory.annotation.Qualifier;
+&nbsp;import org.springframework.beans.factory.annotation.Value;
+&nbsp;import org.springframework.context.annotation.Bean;
+&nbsp;import org.springframework.context.annotation.Configuration;
+&nbsp;import org.springframework.core.io.ClassPathResource;
+&nbsp;import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+&nbsp;
+&nbsp;
+&nbsp;import javax.sql.DataSource;
+&nbsp;import java.io.IOException;
+&nbsp;
+&nbsp;@Configuration
+<b class="nc">&nbsp;public class SessionFactoryConfiguration {</b>
+&nbsp;    @Value(&quot;${mybatis_config_file}&quot;)
+&nbsp;    private String mybatisConfigFilePath;
+&nbsp;
+&nbsp;    @Value(&quot;${mapper_path}&quot;)
+&nbsp;    private String mapperPath;
+&nbsp;
+&nbsp;    @Value(&quot;${entity_package}&quot;)
+&nbsp;    private String entityPackage;
+&nbsp;
+&nbsp;    @Autowired
+&nbsp;    @Qualifier(&quot;dataSource&quot;)
+&nbsp;    private DataSource dataSource;
+&nbsp;
+&nbsp;    @Bean(name = &quot;sqlSessionFactory&quot;)
+&nbsp;    public SqlSessionFactoryBean createSqlSessionFactoryBean() throws IOException {
+<b class="nc">&nbsp;        SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();</b>
+<b class="nc">&nbsp;        sqlSessionFactoryBean.setConfigLocation(new ClassPathResource(mybatisConfigFilePath));</b>
+<b class="nc">&nbsp;        PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();</b>
+<b class="nc">&nbsp;        String packageSearchPath = PathMatchingResourcePatternResolver.CLASSPATH_ALL_URL_PREFIX + mapperPath;</b>
+<b class="nc">&nbsp;        sqlSessionFactoryBean.setMapperLocations(resolver.getResources(packageSearchPath));</b>
+<b class="nc">&nbsp;        sqlSessionFactoryBean.setDataSource(dataSource);</b>
+<b class="nc">&nbsp;        sqlSessionFactoryBean.setTypeAliasesPackage(entityPackage);</b>
+<b class="nc">&nbsp;        return sqlSessionFactoryBean;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-02-27 11:52</div>
+</div>
+</body>
+</html>
